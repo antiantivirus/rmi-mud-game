@@ -31,17 +31,31 @@ class MudClient
             MudServerInterface serv = (MudServerInterface)Naming.lookup( regURL );
 
 	    //declaring input variable
-	    String user_input = "";
+            String thing = "";
+	    String loc = "";
+	    String dir = "";
+            
+            
 
             BufferedReader in = new BufferedReader(
                 new InputStreamReader( System.in ));
             System.out.println( "Welcome to MUD Game" );
 	    System.out.println( "All the fun is about to happen" );
+	    System.out.println( "If you want to leave the game at any time, just type leave" );
+            thing = System.console().readLine("What is your name: ");
+	    System.out.println(serv.createUser(thing));
             System.out.println( "Creating the world...." );
-	    user_input = System.console().readLine("Where would you like to go in the world: ");
+	    loc = System.console().readLine("Where would you like to go in the world: ");
 	    System.out.println( "Adding you to the world...." );
 	    System.out.println( "You are now located...." );
-	    System.out.println(serv.location(user_input));
+	    System.out.println(serv.location(loc));
+            while(!input.equals("leave")) {
+            System.out.println( "You can now move about the world in 4 directions" );
+	    System.out.println( "North (N), East (E), South (S), West (W)" );
+            dir = System.console().readLine("In which direction would you like to move?: ");
+            System.out.println(serv.move(loc, dir, thing));
+            System.out.println(serv.location(loc));
+	    }
             
         }
 	catch (java.io.IOException e) {

@@ -26,9 +26,21 @@ class MudServerImp
     {
     }
 
-    public String location(String s) {
+    public String move(String loc, String dir, String thing) {
 		
-		return w.locationInfo(s);
+		return w.moveThing(loc,dir,thing);
+
+	}
+
+    public String create_user( String loc, String thing ) {
+    
+		return w.createThing(loc,thing);
+
+	}
+
+    public String location(String loc) {
+		
+		return w.locationInfo(loc);
 
 	}
 }
