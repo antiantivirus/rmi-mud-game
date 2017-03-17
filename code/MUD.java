@@ -50,7 +50,7 @@ public class MUD
     /**
      * Create a new thing at a location.
      */
-    private void createThing( String loc, 
+    public void createThing( String loc, 
 			      String thing )
     {
 	Vertex v = getOrCreateVertex( loc );

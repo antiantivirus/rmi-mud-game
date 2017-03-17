@@ -6,6 +6,12 @@ import java.rmi.server.UnicastRemoteObject;
 
 import java.net.InetAddress;
 
+/**
+ * Playing that fun game called MUD.
+ * @author John Murray Brown, University of Aberdeen
+ * Server Mainline. Connecting Server to the RMIRegistry
+ */
+
 class MudServerMainline
 {
 	public static void main(String args[])
@@ -35,12 +41,12 @@ class MudServerMainline
 
 	    // Generate the remote object(s) that will reside on this
 	    // server.
-            MudServerImp shoutserv = new MudServerImp();
-	    MudServerInterface shoutstub = (MudServerInterface)UnicastRemoteObject.exportObject( shoutserv, serverport );
+            MudServerImp serv = new MudServerImp();
+	    MudServerInterface stub = (MudServerInterface)UnicastRemoteObject.exportObject( serv, serverport );
 
 	    String regURL = "rmi://" + hostname + ":" + registryport + "/MudServer";
             System.out.println("Registering " + regURL );
-            Naming.rebind( regURL, shoutstub );
+            Naming.rebind( regURL, stub );
 
 	    // Note the server will not shut down!
 	}

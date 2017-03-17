@@ -10,7 +10,6 @@ import java.rmi.RemoteException;
 /**
  * Playing that fun game called MUD.
  * @author John Murray Brown, University of Aberdeen
- * @version 999999.0
  */
 
 class MudServerImp
@@ -18,7 +17,7 @@ class MudServerImp
 	
 	
 {
-    public MUD w = new MUD("mymud.edg", "mymud.msg", "mymud.thg");
+    MUD w = new MUD("mymud.edg", "mymud.msg", "mymud.thg");
 
 
     public void MudSeverImp()
@@ -26,21 +25,23 @@ class MudServerImp
     {
     }
 
-    public String move(String loc, String dir, String thing) {
+
+    public String location( String loc ) {
 		
-		return w.moveThing(loc,dir,thing);
+		return w.locationInfo( loc );
 
 	}
-
     public String create_user( String loc, String thing ) {
     
-		return w.createThing(loc,thing);
-
+		w.addThing( loc, thing );
+		return w.locationInfo( loc );
 	}
 
-    public String location(String loc) {
+    public String move( String loc, String dir, String thing ) {
 		
-		return w.locationInfo(loc);
+		loc = w.moveThing( loc, dir, thing );
+                return w.locationInfo( loc );
 
 	}
+
 }
