@@ -14,6 +14,10 @@ import java.rmi.RemoteException;
 
 Server Interface for MUD game.
 
+Methods that will be accessed by the client in the game
+
+Methods then implemented in MudSeverImp File
+
 */
 
 public interface MudServerInterface extends Remote

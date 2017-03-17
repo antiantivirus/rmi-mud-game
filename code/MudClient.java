@@ -45,7 +45,7 @@ class MudClient
 	    String object = "";
             String obloc = "";
             
-
+	    //Setting up game for user
             BufferedReader in = new BufferedReader(
                 new InputStreamReader( System.in ));
             System.out.println( "Welcome to MUD Game" );
@@ -57,10 +57,12 @@ class MudClient
             System.out.println( "Adding you to the world...." );
 	    System.out.println(serv.create_user( loc, thing));
 	    System.out.println( "If you want to leave the game at any time, just type leave" );
-            while(!choice.equals("leave")) {
+            //Starting loop which allows user to leave game/
+	    while(!choice.equals("leave")) {
             System.out.println( "Options for game play;" );
 	    System.out.println( "move (m), add object to location (add), pick up object (pick), find out where you are (location)" );
             choice = System.console().readLine("What do you want to do?: ");
+		    //Allows user to choose between different game options
 		    if (choice.equals("m")) {
 			    System.out.println( "You can now move about the world in 4 directions" );
 			    System.out.println( "North, East, South, West" );
@@ -81,7 +83,7 @@ class MudClient
 				System.out.println(serv.pick( loc, thing ));
 			}
 		    else if (choice.equals("location")) {
-			System.out.println(serv.location( loc ));
+			System.out.println( loc );
 			}
                     else {
 			System.out.println( "Invalid choice" );
@@ -89,13 +91,16 @@ class MudClient
 			}
                       }
 	    }
+	    //goodbye message
             System.out.println( "Thanks for playing, bye! :)" );
             
         }
+	//catch IO errors
 	catch (java.io.IOException e) {
             System.err.println( "I/O error." );
 	    System.err.println( e.getMessage() );
         }
+	//catch server not bound errors
 	catch (java.rmi.NotBoundException e) {
             System.err.println( "Server not bound." );
 	    System.err.println( e.getMessage() );

@@ -9,6 +9,7 @@ import java.net.InetAddress;
 /**
  * Playing that fun game called MUD.
  * @author John Murray Brown, University of Aberdeen
+ * Credit first practical for some of this code.
  * Server Mainline. Connecting Server to the RMIRegistry
  */
 
