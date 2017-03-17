@@ -44,4 +44,13 @@ class MudServerImp
 
 	}
 
+    public String add( String obloc, String object ) {
+		w.createThing ( obloc, object );
+		return object;
+	}
+
+    public String pick( String loc, String thing ) {
+		w.delThing ( loc, thing );
+		return thing;
+	}
 }

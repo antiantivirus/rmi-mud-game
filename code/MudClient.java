@@ -41,6 +41,9 @@ class MudClient
             String thing = "";
 	    String loc = "";
 	    String dir = "";
+            String choice = "";
+	    String object = "";
+            String obloc = "";
             
 
             BufferedReader in = new BufferedReader(
@@ -54,13 +57,39 @@ class MudClient
             System.out.println( "Adding you to the world...." );
 	    System.out.println(serv.create_user( loc, thing));
 	    System.out.println( "If you want to leave the game at any time, just type leave" );
-            while(!dir.equals("leave")) {
-		    System.out.println( "You can now move about the world in 4 directions" );
-		    System.out.println( "North, East, South, West" );
-		    dir = System.console().readLine("In which direction would you like to move?: ");
-		    System.out.println(serv.move( loc, dir, thing));
-                    System.out.println( "Location: " + loc );
+            while(!choice.equals("leave")) {
+            System.out.println( "Options for game play;" );
+	    System.out.println( "move (m), add object to location (add), pick up object (pick), find out where you are (location)" );
+            choice = System.console().readLine("What do you want to do?: ");
+		    if (choice.equals("m")) {
+			    System.out.println( "You can now move about the world in 4 directions" );
+			    System.out.println( "North, East, South, West" );
+			    dir = System.console().readLine("In which direction would you like to move?: ");
+			    System.out.println(serv.move( loc, dir, thing));
+		            System.out.println( "Location: " + loc );
+			}
+		    else if (choice.equals("add")) {
+			object = System.console().readLine("Name of object: ");
+			obloc = System.console().readLine("Location of Object: A, B, C or D ");
+			System.out.println(serv.add( object, obloc));
+			System.out.println( "You created a " + object + "at " + obloc );
+			}
+		    else if (choice.equals("pick")) {
+			System.out.println( "Picking up something will permanetly delete it." );
+			choice = System.console().readLine("Do you want to continue? Yes or No ");
+			if (choice.equals("Yes")) {
+				System.out.println(serv.pick( loc, thing ));
+			}
+		    else if (choice.equals("location")) {
+			System.out.println(serv.location( loc ));
+			}
+                    else {
+			System.out.println( "Invalid choice" );
+			
+			}
+                      }
 	    }
+            System.out.println( "Thanks for playing, bye! :)" );
             
         }
 	catch (java.io.IOException e) {
